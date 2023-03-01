@@ -1,5 +1,5 @@
 // begin with a function that will randomly return 'Rock', paper or scissors
-function getComputerChoice () {
+function getComputerChoice() {
     const choiceArray = [
         "Rock",
         "Paper",
@@ -11,14 +11,15 @@ function getComputerChoice () {
 }
 
 
-
 function getPlayerChoice() {
     const choice = prompt("Rock, paper or scissors?");
     return choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
 }
 
 
+
 function playRound(playerSelection, computerSelection) {
+    
 
     if (playerSelection === computerSelection) {
         gameResult = "It's a draw!"
@@ -46,11 +47,20 @@ function playRound(playerSelection, computerSelection) {
         return gameResult    
     }
 }
-
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
-console.log(computerSelection)
-console.log(playRound(playerSelection, computerSelection));
+console.log(getComputerChoice());
+// console.log(playRound())
+console.log(game())
+
+
+function game() {
+    oneRound = playRound(playerSelection, computerSelection)
+    return oneRound
+    
+}
+
+
 
 // function game() {
 //     for (let i = 0; i < 5; i++) {
@@ -62,12 +72,16 @@ console.log(playRound(playerSelection, computerSelection));
       
 //     }
 // }
-    
+
+
+
+// console.log(computerSelection);
+// console.log(playRound(playerSelection, computerSelection));
         
-        // if i > 0, prompt getPlayerChoice
-        // after each prompt, run playRound
+//         if i > 0, prompt getPlayerChoice
+//         after each prompt, run playRound
         
 
 // console.log(game())
-//alles vanaf punt 5;
-//getplayerchoice moet foutmelding bij foute prompt krijgen
+// alles vanaf punt 5;
+// getplayerchoice moet foutmelding bij foute prompt krijgen
