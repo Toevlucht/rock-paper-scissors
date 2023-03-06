@@ -1,3 +1,5 @@
+alert("Before clicking 'OK', in Chrome Press F12, and open 'Sources' in the DevTools. If you don't see 'Console' as a tab in the bottom of Devtools, press Esc");
+
 //computer makes a random choice on the basis of a three-string array
 function getComputerChoice() {
     const choiceArray = [
@@ -109,3 +111,5 @@ function game() {
 
 
 console.log(game());
+
+alert ("Thanks for playing! Want to play again? Press F5 or refresh this page :)")
