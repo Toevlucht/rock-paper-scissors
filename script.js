@@ -1,4 +1,4 @@
-// begin with a function that will randomly return 'Rock', paper or scissors
+//computer makes a random choice on the basis of a three-string array
 function getComputerChoice() {
     const choiceArray = [
         "Rock",
@@ -10,18 +10,33 @@ function getComputerChoice() {
     return randomElement;
 }
 
-
+//player is prompted to enter a string, which will return: "Lorem"
 function getPlayerChoice() {
     const choice = prompt("Rock, paper or scissors?");
     return choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
 }
 
+//number of rounds is prompted, with safeguard
+function askNumber() {
+    
+    let roundChoice;
+
+    do {
+        roundChoice = parseInt(prompt(`please enter the number of round you want to play, between ${minRound} and ${maxRound}`));
+    } while ((roundChoice < minRound || roundChoice > maxRound) && roundChoice);
+    
+    return roundChoice; 
+}
+
+let minRound = 1;
+let maxRound = 10;
 let computerScore = 0;
 let playerScore = 0;
-let roundNumber = 0;
+let roundNumber = askNumber();
+const roundInitial = roundNumber;
 let gameResult = "";
 
-
+//all possible outcomes for playing 1 round
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
@@ -51,13 +66,9 @@ function playRound(playerSelection, computerSelection) {
         gameResult = `You win! Your choice: ${playerSelection} beats the computer's choice: ${computerSelection}.`
         playerScore += 1
         return gameResult
-    } else if (playerSelection === "Tijntje") {
-        gameResult = "Noooh sgggatje van me toch. Speciaal voor jou +10000 punten <333"
-        playerScore += 10000;
-        return gameResult;
     } else (playerSelection != "Paper"|"Rock"|"Scissors"); {
-        gameResult = "Nee sgettebout, je moet 'paper', 'scissors' of 'rock' invullen. +100 punten voor de computer ;-)."
-        computerScore += 100;
+        gameResult = "O nee! Je moet 'paper', 'scissors' of 'rock' invullen. +2 punten voor de computer ;-)."
+        computerScore += 2;
         return gameResult    
     }
 }
@@ -65,89 +76,36 @@ function playRound(playerSelection, computerSelection) {
 let playerSelection = getPlayerChoice();
 let computerSelection = getComputerChoice();
 
+//game() initializes for loop with a max of roundInitial - 1, if statement is skipped in 1st round, but prompted every other round;
 function game() {
-    // let playerSelection = getPlayerChoice();
-    // let computerSelection = getComputerChoice();
-    
-    // console.log((computerSelection), (oneRound));
 
-    for (let i = 0; i < 5; i++) {
-    //    first, let a new PlayerChoice value appear after each round:
-        if (roundNumber > 0) {
+    for (let i = 0; i <= (roundInitial - 1); i++) {
+    
+        if (roundNumber < roundInitial) {
             playerSelection = getPlayerChoice();
             computerSelection = getComputerChoice();
         }
         playRound(playerSelection, computerSelection)
 
-        switch (roundNumber) {
-            case 0:
-                roundNumber++;
+        switch (true) {
+            case roundNumber < 2:
                 console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
-                // const playerSelection = 0
-                break;
-            case 1:
-                roundNumber++;
-                console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
-                break;
-            case 2:
-                roundNumber++;
-                console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
-                break;
-            case 3:
-                roundNumber++;
-                console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
-                break;
-            case 4:
-                roundNumber++;
-                console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
+                console.log(`Round number: ${i + 1}`)
                 if (playerScore > computerScore) {
                     console.log(`Hurray you won! Your final scores is: ${playerScore}  against the computer's final score: ${computerScore}. Well done!`);
                 } else {
-                    console.log(`Oh no, you lost! Your final scores is: ${playerScore}  against the computer's final score: ${computerScore}. Well done!`);
+                    console.log(`Oh no, you lost! Your final scores is: ${playerScore}  against the computer's final score: ${computerScore}. Better luck next time!`);
                 }
+                roundNumber--;
+                break;
+            case roundNumber >= 2:
+                console.log(`${gameResult} Your current score is: ${playerScore}, whereas the computer's score is ${computerScore}.`);
+                console.log(`Round number: ${i + 1}`)
+                roundNumber--;
                 break;
         }
     } 
 }
 
 
-console.log(game())
-
-        // if (getPlayerChoice () === "") {
-        //     playerSelection;
-        // }
-
-//         switch (roundNumber) {
-//             case 0: 
-//                 playRound(playerSelection, computerSelection);
-//                 roundNumber++;
-//                 console.log(gameResult, playerScore, computerScore, roundNumber, one)
-//                 break;
-//             case 1:
-//                 playRound(playerSelection, computerSelection);
-//                 roundNumber++;
-//                 console.log(gameResult, playerScore, computerScore, roundNumber, two)
-//                 break;
-//             case 2:
-//                 playRound(playerSelection, computerSelection);
-//                 roundNumber++;
-//                 console.log(gameResult, playerScore, computerScore, roundNumber, three)
-//                 break;
-//             case 3:
-//                 playRound(playerSelection, computerSelection);
-//                 roundNumber++;
-//                 console.log(gameResult, playerScore, computerScore, roundNumber, one)
-//                 break;
-//             case 4:
-//                 playRound(playerSelection, computerSelection);
-//                 roundNumber++;
-//                 console.log(gameResult, playerScore, computerScore, roundNumber, three)
-//                 break;    
-        
-//         }
-
-//         computerSelection;
-//         playRound(playerSelection, computerSelection)
-//     }   
-// }
-
+console.log(game());
