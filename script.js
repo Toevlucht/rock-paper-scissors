@@ -1,4 +1,22 @@
-alert("Before clicking 'OK', in Chrome Press F12, and open 'Sources' in the DevTools. If you don't see 'Console' as a tab in the bottom of Devtools, press Esc");
+// alert("Before clicking 'OK', in Chrome Press F12, and open 'Sources' in the DevTools. If you don't see 'Console' as a tab in the bottom of Devtools, press Esc");
+
+let minRound = 1;
+let maxRound = 10;
+let computerScore = 0;
+let playerScore = 0;
+let roundNumber = askNumber();
+const roundInitial = roundNumber;
+let gameResult = "";
+let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(button.id);
+        return button.id
+    });
+})
 
 //computer makes a random choice on the basis of a three-string array
 function getComputerChoice() {
@@ -13,10 +31,16 @@ function getComputerChoice() {
 }
 
 //player is prompted to enter a string, which will return: "Lorem"
-function getPlayerChoice() {
-    const choice = prompt("Rock, paper or scissors?");
-    return choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
-}
+// function getPlayerChoice() {
+//     // const choice = prompt("Rock, paper or scissors?");
+//     const buttons = document.querySelectorAll('button');
+//     buttons.forEach((button) => {
+//         button.addEventListener('click', () => {
+//             console.log(button.id);
+//             return button.id
+//         });
+//     })
+// }
 
 //number of rounds is prompted, with safeguard
 function askNumber() {
@@ -30,13 +54,7 @@ function askNumber() {
     return roundChoice; 
 }
 
-let minRound = 1;
-let maxRound = 10;
-let computerScore = 0;
-let playerScore = 0;
-let roundNumber = askNumber();
-const roundInitial = roundNumber;
-let gameResult = "";
+
 
 //all possible outcomes for playing 1 round
 function playRound(playerSelection, computerSelection) {
@@ -75,10 +93,9 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let playerSelection = getPlayerChoice();
-let computerSelection = getComputerChoice();
 
-//game() initializes for loop with a max of roundInitial - 1, if statement is skipped in 1st round, but prompted every other round;
+
+// game() initializes for loop with a max of roundInitial - 1, if statement is skipped in 1st round, but prompted every other round;
 function game() {
 
     for (let i = 0; i <= (roundInitial - 1); i++) {
@@ -112,4 +129,4 @@ function game() {
 
 console.log(game());
 
-alert ("Thanks for playing! Want to play again? Press F5 or refresh this page :)")
+// alert ("Thanks for playing! Want to play again? Press F5 or refresh this page :)")
